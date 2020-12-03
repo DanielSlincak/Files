@@ -129,6 +129,7 @@ namespace Files
         public override void SetSelectedItemsOnUi(List<ListedItem> selectedItems)
         {
             ClearSelection();
+
             foreach (ListedItem selectedItem in selectedItems)
             {
                 AllView.SelectedItems.Add(selectedItem);
@@ -145,7 +146,16 @@ namespace Files
             List<ListedItem> allItems = AssociatedViewModel.FilesAndFolders.ToList();
             List<ListedItem> newSelectedItems = allItems.Except(SelectedItems).ToList();
 
-            SetSelectedItemsOnUi(newSelectedItems);
+            // If all items should be selected, it takes approximately 2 sec on 160 files
+            // Using the SelectAllItems method takes only 20ms
+            if(allItems.Count == newSelectedItems.Count)
+            {
+                SelectAllItems();
+            }
+            else
+            {
+                SetSelectedItemsOnUi(newSelectedItems);
+            }
         }
 
         public override void ClearSelection()
