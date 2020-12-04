@@ -116,5 +116,39 @@ namespace Files.ClassLibrary.Test
             sidebarPinnedModel.RemoveStaleSidebarItems();
             Assert.IsTrue(MainPage.sideBarItems.Count == mainPageItemsCount, $"Expected {0 + mainPageItemsCount}, got {MainPage.sideBarItems.Count} in MainPage");
         }
+
+        [TestMethod]
+        public void SwapItemsInSidebar_Verify()
+        {
+            SidebarPinnedController sidebarPinnedController = new SidebarPinnedController();
+            Assert.IsTrue(sidebarPinnedController != null, "Sidebar controller is null");
+
+            SidebarPinnedModel sidebarPinnedModel = sidebarPinnedController.Model;
+            Assert.IsTrue(sidebarPinnedModel != null, "Sidebar model is null");
+
+            var sidebarPinnedModelItemsCount = sidebarPinnedModel.Items.Count;
+            var mainPageItemsCount = MainPage.sideBarItems.Count;
+
+            sidebarPinnedModel.AddDefaultItems();
+            Assert.IsTrue(sidebarPinnedModel.Items.Count == 6 + sidebarPinnedModelItemsCount, $"Expected {6 + sidebarPinnedModelItemsCount}, got {sidebarPinnedModel.Items.Count} in SidebarPinnedModel");
+            sidebarPinnedModel.AddAllItemsToSidebar();
+            Assert.IsTrue(MainPage.sideBarItems.Count == 6 + mainPageItemsCount, $"Expected {6 + mainPageItemsCount}, got {MainPage.sideBarItems.Count} in MainPage");
+
+            int firstIndex = 2;
+            string itemToSwap1 = sidebarPinnedModel.Items[0];
+
+            var path = "C://Temp";
+
+            // Add item
+            sidebarPinnedModel.AddItem(path);
+            Assert.IsTrue(sidebarPinnedModel.Items.Count == sidebarPinnedModelItemsCount + 1, $"Expected {1 + sidebarPinnedModelItemsCount}, got {sidebarPinnedModel.Items.Count} in SidebarPinnedModel");
+            Assert.IsTrue(MainPage.sideBarItems.Count == mainPageItemsCount + 1, $"Expected {1 + mainPageItemsCount}, got {MainPage.sideBarItems.Count} in MainPage");
+
+            // Add item
+            sidebarPinnedModel.RemoveItem(path);
+            Assert.IsTrue(sidebarPinnedModel.Items.Count == sidebarPinnedModelItemsCount, $"Expected {0 + sidebarPinnedModelItemsCount}, got {sidebarPinnedModel.Items.Count} in SidebarPinnedModel");
+            sidebarPinnedModel.RemoveStaleSidebarItems();
+            Assert.IsTrue(MainPage.sideBarItems.Count == mainPageItemsCount, $"Expected {0 + mainPageItemsCount}, got {MainPage.sideBarItems.Count} in MainPage");
+        }
     }
 }

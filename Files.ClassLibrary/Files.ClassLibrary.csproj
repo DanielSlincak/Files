@@ -7,8 +7,8 @@
     <ProjectGuid>{4AF59989-8762-4F46-BCE6-9DD59267FA95}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UwpClassLibrary</RootNamespace>
-    <AssemblyName>UwpClassLibrary</AssemblyName>
+    <RootNamespace>Files.ClassLibrary</RootNamespace>
+    <AssemblyName>Files.ClassLibrary</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>

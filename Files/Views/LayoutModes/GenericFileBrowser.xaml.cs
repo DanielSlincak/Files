@@ -136,6 +136,14 @@ namespace Files
             }
         }
 
+        public void RemoveSelectedItemsOnUi(List<ListedItem> selectedItems)
+        {
+            foreach (ListedItem selectedItem in selectedItems)
+            {
+                AllView.SelectedItems.Remove(selectedItem);
+            }
+        }
+
         public override void SelectAllItems()
         {
             SelectAllMethod.Invoke(AllView, null);
@@ -146,16 +154,18 @@ namespace Files
             List<ListedItem> allItems = AssociatedViewModel.FilesAndFolders.ToList();
             List<ListedItem> newSelectedItems = allItems.Except(SelectedItems).ToList();
 
-            // If all items should be selected, it takes approximately 2 sec on 160 files
-            // Using the SelectAllItems method takes only 20ms
-            if(allItems.Count == newSelectedItems.Count)
+            // If more than half of items should be selected, its faster to select all items and remove the rest
+            if(newSelectedItems.Count > allItems.Count / 2)
             {
+                var itemsToRemove = SelectedItems.ToList();
                 SelectAllItems();
+                RemoveSelectedItemsOnUi(itemsToRemove);
             }
             else
             {
                 SetSelectedItemsOnUi(newSelectedItems);
             }
+
         }
 
         public override void ClearSelection()
