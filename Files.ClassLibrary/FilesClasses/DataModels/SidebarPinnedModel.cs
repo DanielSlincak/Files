@@ -23,6 +23,9 @@ namespace Files.ClassLibrary.DataModels
         /// </summary>
         public void Save() => App.SidebarPinnedController.SaveModel();
 
+        [JsonIgnore]
+        public MainPage MainPage = new MainPage();
+
         [JsonProperty("items")]
         public List<string> Items { get; set; } = new List<string>();
 

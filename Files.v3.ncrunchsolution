@@ -1,14 +1,7 @@
 ﻿<SolutionConfiguration>
   <Settings>
     <AllowParallelTestExecution>False</AllowParallelTestExecution>
-    <MetricsExclusionList>
-      <Value>Common\Common.csproj</Value>
-      <Value>Files\Files.csproj</Value>
-      <Value>Files.Extensions\Files.Extensions.vcxproj</Value>
-      <Value>Files.Launcher\Files.Launcher.csproj</Value>
-      <Value>MessageRelay\Files.MessageRelay.csproj</Value>
-      <Value>Files.Package\Files.Package.wapproj</Value>
-    </MetricsExclusionList>
+    <MetricsExclusionList />
     <SolutionConfigured>True</SolutionConfigured>
   </Settings>
 </SolutionConfiguration>

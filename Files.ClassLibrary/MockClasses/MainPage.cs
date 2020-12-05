@@ -8,13 +8,18 @@ using System.Threading.Tasks;
 
 namespace Files.ClassLibrary.MockClasses
 {
-    public static class MainPage
+    public class MainPage
     {
-        public static ObservableCollection<INavigationControlItem> sideBarItems = new ObservableCollection<INavigationControlItem>();
+        public ObservableCollection<INavigationControlItem> sideBarItems = new ObservableCollection<INavigationControlItem>();
 
-        public static void ClearSidebarItems()
+        public void ClearSidebarItems()
         {
             sideBarItems.Clear();
+        }
+
+        public MainPage()
+        {
+
         }
     }
 }
